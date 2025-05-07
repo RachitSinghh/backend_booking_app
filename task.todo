@@ -1,0 +1,11 @@
+## ✅ What’s Working So Far:
+
+
+  ✔ User Registration/Login @done(25-05-08 03:23)
+  ✔ JWT Auth Middleware @done(25-05-08 03:23)
+  ✔ Public Activity Listing @done(25-05-08 03:23)
+  ✔ Book Activity (Protected) @done(25-05-08 03:23)
+  ☐ View Bookings for Logged-in User
+  ☐ Add Validation
+  ☐ Error Handling
+  ☐ Deploy

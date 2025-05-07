@@ -96,3 +96,34 @@
   - Verified correct user object is returned from the server.
   - Confirmed `401 Unauthorized` error is returned for invalid or missing tokens.
 
+## 11. Activity Model and Public API
+
+### 📁 Models
+- **Created `models/Activity.js`** schema with fields:
+  - `title`, `description`, `location`, `date`, `time`.
+
+### 🧠 Controllers
+- **Created `controllers/activityController.js`** with:
+  - `getActivities()` to fetch all activities from the database.
+
+### 🔀 Routes
+- **Created `routes/activityRoutes.js`**:
+  - Added `GET /` route to fetch all activities.
+- **Linked route in `app.js`** under `/api/activities`.
+
+### 🧪 Testing
+- **Added sample activity** directly via MongoDB or `POST` request.
+- **Verified `GET /api/activities`**:
+  - Returns all activity records in JSON format.
+  - Tested using Postman.
+
+
+
+
+
+Add Activity model and public API to list all activities
+
+- Defined Activity schema with title, description, location, and date
+- Created controller and route to fetch all activities
+- Mounted /api/activities as a public endpoint
+- Verified with Postman
