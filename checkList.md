@@ -76,3 +76,23 @@
   - `"Server running on port 5000"`.
 - **Registering and logging in** should return a valid JSON response (not an HTML error).
 - **JWT token** should be returned after both actions.
+
+## 8. Middleware for Authentication
+- **Created `middlewares/authMiddleware.js`**:
+  - Checks for `Authorization: Bearer <token>` header.
+  - Verifies JWT using `jwt.verify()`.
+  - Fetches user from the database and attaches it to `req.user`.
+  - Returns `401 Unauthorized` for missing or invalid tokens.
+
+## 9. Protected Route
+- **Added `GET /api/auth/me` route** in `authRoutes.js`:
+  - Applied `protect` middleware to the route.
+  - Returns the currently authenticated user's information.
+
+## 10. Testing Protected Route
+- **Tested via Postman**:
+  - Logged in via `/login` to obtain a JWT.
+  - Called `/api/auth/me` with `Authorization: Bearer <JWT>` header.
+  - Verified correct user object is returned from the server.
+  - Confirmed `401 Unauthorized` error is returned for invalid or missing tokens.
+
