@@ -1,6 +1,6 @@
-# ✅ Checklist: Backend Auth System Setup
+# Checklist: Backend Auth System Setup
 
-## 🛠️ 1. Project Initialization
+## 1. Project Initialization
 - **Created project folder** and initialized with `npm init -y`.
 - **Installed dependencies**:
   - `express`, `mongoose`, `bcryptjs`, `jsonwebtoken`, `dotenv`, `cors`, `express-validator`.
@@ -17,7 +17,7 @@
   .env
   ```
 
-## 🌐 2. Environment Configuration
+## 2. Environment Configuration
 - **Created `.env` file** with:
   ```
   PORT=5000
@@ -26,11 +26,11 @@
   ```
 - **Called `dotenv.config()`** at the top of `server.js`.
 
-## ⚙️ 3. Database Connection
+## 3. Database Connection
 - **Created `config/db.js`** to connect MongoDB using `mongoose`.
 - **Confirmed successful DB connection** via console log.
 
-## 🚀 4. Express Server Setup
+## 4. Express Server Setup
 - **Configured `app.js`** to use:
   - `express.json()`
   - `cors()`
@@ -38,12 +38,12 @@
 - **Created `server.js`** to start the server on `process.env.PORT`.
 - **Verified server runs** with `npm run dev`.
 
-## 👤 5. User Model
+## 5. User Model
 - **Created `models/User.js`** with fields:
   - `name`, `email`, `phone`, `password`.
 - **Used `timestamps: true`** for tracking created/updated times.
 
-## 🔐 6. Auth Routes and Controllers
+## 6. Auth Routes and Controllers
 - **Created `routes/authRoutes.js`** with:
   - `POST /register`
   - `POST /login`.
@@ -57,7 +57,7 @@
     - Return JWT.
 - **Used `jsonwebtoken`** and `process.env.JWT_SECRET` to generate tokens.
 
-## 🧪 7. Testing Functionality (Manual)
+## 7. Testing Functionality (Manual)
 - **Register endpoint tested** via Postman:
   - `POST http://localhost:5000/api/auth/register`.
   - Valid user created in DB.
@@ -70,7 +70,7 @@
     - Missing or incorrect route mount.
     - Incorrect method (GET instead of POST).
 
-## ✅ Final Notes for Stability Check
+## Final Notes for Stability Check
 - **Server logs should confirm**:
   - `"MongoDB connected"`.
   - `"Server running on port 5000"`.
