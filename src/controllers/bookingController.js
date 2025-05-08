@@ -15,6 +15,15 @@ exports.bookActivity = async (req, res) => {
       return res.status(404).json({ message: "Activity not found" });
     }
 
+    const activityDate = new Date(activity.date);
+    const today = new Date();
+
+    // strip time from today for accurate comparison 
+    today.setHours(0,0,0,0);
+    if(activityDate < today){
+      return res.status(400).json({ message: 'Cannot book a past activity'});
+    }
+
     // Prevent double booking
     const exisitingBooking = await Booking.findOne({
       user: userId,
