@@ -2,8 +2,8 @@ const Booking = require("../models/Booking.js");
 const Activity = require("../models/Activity.js");
 
 exports.bookActivity = async (req, res) => {
-  if(!req.user || !req.user._id){
-    return res.status(401).json({message: "Unauthorized: user not found"})
+  if (!req.user || !req.user._id) {
+    return res.status(401).json({ message: "Unauthorized: user not found" });
   }
   const userId = req.user._id;
   const { activityId } = req.params;
@@ -54,3 +54,23 @@ exports.getMyBookings = async (req, res) => {
   }
 };
 
+exports.cancelBooking = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const { activityId } = req.params;
+
+    const booking = await Booking.findOneAndDelete({
+      user: userId,
+      activity: activityId,
+    });
+
+    if (!booking) {
+      return res
+        .status(404)
+        .json({ message: "No booking found for this activity" });
+    }
+    res.status(200).json({ message: "Booking cancelled successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
