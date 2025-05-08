@@ -5,7 +5,17 @@
   ✔ JWT Auth Middleware @done(25-05-08 03:23)
   ✔ Public Activity Listing @done(25-05-08 03:23)
   ✔ Book Activity (Protected) @done(25-05-08 03:23)
-  ☐ View Bookings for Logged-in User
+  ✔ View Bookings for Logged-in User @done(25-05-08 13:57)
+    ✔ Create a protected route that lets the currently logged-in user see all activities they’ve booked. @done(25-05-08 13:58)
+      ✔ 1. Create a controller to fetch bookings for req.user._id @done(25-05-08 13:58)
+
+      ✔ 2. Populate the related activity info from the Activity collection @done(25-05-08 13:58)
+    
+      ✔ 3. Add a new GET route GET /api/my-bookings @done(25-05-08 13:58)
+    
+      ✔ 4. Protect this route with JWT middleware @done(25-05-08 13:58)
+    
+      ✔ 5. Test using Postman with the token @done(25-05-08 13:58)
   ☐ Add Validation
   ☐ Error Handling
   ☐ Deploy

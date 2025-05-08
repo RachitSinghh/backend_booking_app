@@ -2,6 +2,9 @@ const Booking = require("../models/Booking.js");
 const Activity = require("../models/Activity.js");
 
 exports.bookActivity = async (req, res) => {
+  if(!req.user || !req.user._id){
+    return res.status(401).json({message: "Unauthorized: user not found"})
+  }
   const userId = req.user._id;
   const { activityId } = req.params;
 
@@ -35,3 +38,19 @@ exports.bookActivity = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.getMyBookings = async (req, res) => {
+  try {
+    const userId = req.user._id; // id of the currently logged-in user(added by authMiddleware)
+
+    // Find all bookings where user = current user
+    const bookings = await require("../models/Booking.js")
+      .find({ user: userId })
+      .populate("activity"); // pull full activity details
+
+    res.status(200).json(bookings);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+

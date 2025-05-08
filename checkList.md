@@ -117,13 +117,31 @@
   - Returns all activity records in JSON format.
   - Tested using Postman.
 
+## 12. Booking Model and User-Specific Bookings API
+
+### Models
+- **Created `models/Booking.js`** schema with fields:
+  - References to `User` and `Activity` models.
+- **Used `.populate('activity')`** to include activity details in booking list.
+
+### Controllers
+- **Created `controllers/bookingController.js`** with:
+  - `getMyBookings()`:
+    - Retrieved bookings for `req.user._id`.
+    - Implemented proper error handling and HTTP status codes.
+    - Returned full booking list to the client.
+
+### Routes
+- **Defined `GET /api/my-bookings` route** in `routes/bookingRoutes.js`:
+  - Protected route using `protect` middleware.
+- **Registered booking routes** in `app.js`.
+
+### Testing
+- **Tested in Postman**:
+  - Sent `GET` request with `Authorization: Bearer <JWT token>` header.
+  - Received list of bookings with full activity details.
+  - Confirmed only user-specific bookings are returned.
 
 
 
 
-Add Activity model and public API to list all activities
-
-- Defined Activity schema with title, description, location, and date
-- Created controller and route to fetch all activities
-- Mounted /api/activities as a public endpoint
-- Verified with Postman
