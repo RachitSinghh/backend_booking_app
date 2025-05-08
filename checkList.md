@@ -144,4 +144,50 @@
 
 
 
+## 13. Input Validation with `express-validator`
+
+### Installed `express-validator`
+- Added `express-validator` for input validation.
+
+### Validation Added to:
+- **`POST /api/auth/register`**:
+  - Validates required fields like `name`, `email`, `password`.
+  - Ensures email format is correct and password meets criteria.
+- **`POST /api/auth/login`**:
+  - Validates required fields like `email` and `password`.
+
+### Error Handling
+- Used `validationResult` in controllers to handle validation errors.
+- Returned appropriate error messages for invalid inputs.
+
+---
+
+## 14. Global Error Handler
+
+### Middleware
+- Created `errorHandler` middleware to handle errors globally.
+
+### Integration
+- Registered `errorHandler` in `app.js` after all routes.
+
+### Usage
+- Can throw custom errors in controllers using:
+  ```javascript
+  const err = new Error('Some message');
+  err.statusCode = 400;
+  throw err;
+  ```
+
+---
+
+## 15. Testing Input Validation and Error Handling
+
+### Input Validation
+- Verified invalid `register`/`login` requests return proper error messages.
+
+### Global Error Handling
+- Manually threw errors in controllers to confirm global error handling works as expected.
+- Ensured consistent error responses across the application.
+
+
 

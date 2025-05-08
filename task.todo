@@ -16,6 +16,11 @@
       ✔ 4. Protect this route with JWT middleware @done(25-05-08 13:58)
     
       ✔ 5. Test using Postman with the token @done(25-05-08 13:58)
-  ☐ Add Validation
-  ☐ Error Handling
+  All the core featuers are now complete:
+    ✔ Auth @done(25-05-08 14:00)
+    ✔ Activites @done(25-05-08 14:00)
+    ✔ Booking @done(25-05-08 14:00)
+    ✔ My Bookings @done(25-05-08 14:00)
+  ✔ Add Validation @done(25-05-08 15:08)
+  ✔ Error Handling @done(25-05-08 15:08)
   ☐ Deploy

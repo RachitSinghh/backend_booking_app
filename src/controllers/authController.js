@@ -1,12 +1,19 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const { validationResult } = require("express-validator");
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 };
 
 exports.registerUser = async (req, res) => {
+
+  const errors = validationResult(req);
+  if(!errors.isEmpty()){
+    return res.status(400).json({erros: errors.array()});
+  }
+
   const { name, email, phone, password } = req.body;
   try {
     const userExists = await User.findOne({ email });
@@ -33,6 +40,11 @@ exports.registerUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
+  const errors = validationResult(req);
+  if(!errors.isEmpty()){
+    return res.status(400).json({errors: errors.array() });
+  }
+  
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
