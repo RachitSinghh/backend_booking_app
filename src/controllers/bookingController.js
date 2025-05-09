@@ -18,10 +18,10 @@ exports.bookActivity = async (req, res) => {
     const activityDate = new Date(activity.date);
     const today = new Date();
 
-    // strip time from today for accurate comparison 
-    today.setHours(0,0,0,0);
-    if(activityDate < today){
-      return res.status(400).json({ message: 'Cannot book a past activity'});
+    // strip time from today for accurate comparison
+    today.setHours(0, 0, 0, 0);
+    if (activityDate < today) {
+      return res.status(400).json({ message: "Cannot book a past activity" });
     }
 
     // Prevent double booking
@@ -51,10 +51,24 @@ exports.bookActivity = async (req, res) => {
 exports.getMyBookings = async (req, res) => {
   try {
     const userId = req.user._id; // id of the currently logged-in user(added by authMiddleware)
+    const filters = { user: req.user._Id };
+
+    // status filter
+    if (req.query.status) {
+      filters.status = req.query.status;
+    }
+
+    // filter upcoming bookings (based on activtiy date)
+    if (req.query.upcoming === "true") {
+      const today = new Date();
+      today.setHours(0,0,0,0); 
+      filters["activity.date"] = { $gte: today };
+    }
 
     // Find all bookings where user = current user
     const bookings = await require("../models/Booking.js")
       .find({ user: userId })
+      // .find(filters)
       .populate("activity"); // pull full activity details
 
     res.status(200).json(bookings);
